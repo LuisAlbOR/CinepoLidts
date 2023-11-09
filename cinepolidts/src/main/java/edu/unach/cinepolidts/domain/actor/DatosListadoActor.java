@@ -1,4 +1,4 @@
-package edu.unach.cinepolidts.domain.actores;
+package edu.unach.cinepolidts.domain.actor;
 
 public record DatosListadoActor(int id, String nombre) {
     public DatosListadoActor(Actor actor){

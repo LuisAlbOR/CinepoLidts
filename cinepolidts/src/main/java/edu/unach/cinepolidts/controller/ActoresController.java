@@ -1,6 +1,6 @@
 package edu.unach.cinepolidts.controller;
 
-import edu.unach.cinepolidts.domain.actores.*;
+import edu.unach.cinepolidts.domain.actor.*;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +10,7 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/actores")
+@RequestMapping("/actor")
 @CrossOrigin(origins = "*", methods= {RequestMethod.GET,RequestMethod.POST,RequestMethod.DELETE,RequestMethod.PUT})
 public class ActoresController {
 

@@ -1,4 +1,4 @@
-package edu.unach.cinepolidts.domain.actores;
+package edu.unach.cinepolidts.domain.actor;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;

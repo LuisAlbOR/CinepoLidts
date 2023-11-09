@@ -1,4 +1,4 @@
-package edu.unach.cinepolidts.domain.actores;
+package edu.unach.cinepolidts.domain.actor;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

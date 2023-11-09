@@ -1,10 +1,10 @@
-package edu.unach.cinepolidts.domain.actores;
+package edu.unach.cinepolidts.domain.actor;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface ActoresRepository extends JpaRepository<Actor, Integer> {
-
-    Page<Actor> findAll(Pageable paginacion);
+    @Override
+    Page<Actor> findAll(Pageable pageable);
 }
