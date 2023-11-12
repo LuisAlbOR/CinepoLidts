@@ -1,4 +1,4 @@
-package edu.unach.cinepolidts.infra;
+package edu.unach.cinepolidts.infra.errors;
 
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.http.ResponseEntity;
