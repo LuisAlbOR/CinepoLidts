@@ -7,7 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.UriComponentsBuilder;
+
+import java.net.URI;
 
 @RestController
 @RequestMapping("/director")
@@ -18,28 +22,38 @@ public class DirectorController {
     private DirectorRepository directorRepository;
 
     @PostMapping
-    public void registrarDirector(@RequestBody @Valid DatosRegistroDirector datosRegistroDirector){
-        directorRepository.save(new Director(datosRegistroDirector));
+    public ResponseEntity<DatosRespuestaDirector> registrarDirector(@RequestBody @Valid DatosRegistroDirector datosRegistroDirector, UriComponentsBuilder uriComponentsBuilder){
+        Director director = directorRepository.save(new Director(datosRegistroDirector));
+
+        DatosRespuestaDirector datosRespuestaDirector = new DatosRespuestaDirector(director.getId(), director.getNombre());
+
+        URI url = uriComponentsBuilder.path("/director/{id}").buildAndExpand(director.getId()).toUri();
+
+        return ResponseEntity.created(url).body(datosRespuestaDirector);
     }
 
     @GetMapping
-    public Page<DatosListarDirector> listarDirector(@PageableDefault(page = 0,size = 5,  sort={"nombre"}) Pageable paginacion){
-        return directorRepository.findAll(paginacion).map(DatosListarDirector::new);
+    public ResponseEntity<Page<DatosListarDirector>> listarDirector(@PageableDefault(page = 0,size = 5,  sort={"nombre"}) Pageable paginacion){
+        return ResponseEntity.ok(directorRepository.findAll(paginacion).map(DatosListarDirector::new));
     }
 
     @PutMapping
     @Transactional
-    public void actualizarDirector(@RequestBody @Valid DatosActualizarDirector datosActualizarDirector){
+    public ResponseEntity actualizarDirector(@RequestBody @Valid DatosActualizarDirector datosActualizarDirector){
         Director director = directorRepository.getReferenceById(datosActualizarDirector.id());
 
         director.actualzarDirector(datosActualizarDirector);
+
+        return ResponseEntity.ok(new DatosRespuestaDirector(director.getId(), director.getNombre()));
     }
 
     @DeleteMapping("/{id}")
     @Transactional
-    public void eliminarDirector(@PathVariable int id){
+    public ResponseEntity eliminarDirector(@PathVariable int id){
         Director director = directorRepository.getReferenceById(id);
 
         directorRepository.delete(director);
+
+        return ResponseEntity.noContent().build();
     }
 }
