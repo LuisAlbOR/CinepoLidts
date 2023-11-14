@@ -1,6 +1,7 @@
 package edu.unach.cinepolidts.domain.director;
 
 
+import edu.unach.cinepolidts.domain.pelicula.Categoria;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
