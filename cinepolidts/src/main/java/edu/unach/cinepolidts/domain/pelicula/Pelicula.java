@@ -7,6 +7,10 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.sql.Time;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+
 
 @Entity(name = "Pelicula")
 @Table(name = "pelicula")
@@ -18,7 +22,7 @@ public class Pelicula {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private int id;
 
     private String image;
 
@@ -26,7 +30,8 @@ public class Pelicula {
 
     private String nombre;
 
-    private int minutos;
+
+    private Time minutos;
 
     @Enumerated(EnumType.STRING)
     private Clasificacion clasificacion;
@@ -34,7 +39,7 @@ public class Pelicula {
     @Enumerated(EnumType.STRING)
     private Categoria tipo;
 
-    private int year;
+    private Time year;
 
     private String sinopsis;
 
@@ -42,4 +47,15 @@ public class Pelicula {
     @JoinColumn(name = "director_id")  // Esto debe coincidir con el nombre de la columna en tu tabla de Peliculas
     private Director director;
 
+    public Pelicula(DatosRegistroPelicula datosRegistroPelicula, Director director) {
+        this.image = datosRegistroPelicula.image();
+        this.urlTrailer = datosRegistroPelicula.urlTrailer();
+        this.nombre = datosRegistroPelicula.nombre();
+        this.minutos = datosRegistroPelicula.minutos();
+        this.clasificacion = datosRegistroPelicula.clasificacion();
+        this.tipo = datosRegistroPelicula.tipo();
+        this.year = datosRegistroPelicula.year();
+        this.sinopsis = datosRegistroPelicula.sinopsis();
+        this.director = director ;
+    }
 }
