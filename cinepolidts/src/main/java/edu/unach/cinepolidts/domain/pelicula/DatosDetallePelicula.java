@@ -14,10 +14,8 @@ public record DatosDetallePelicula(
         int id,
         String nombre,
         String urlTrailer,
-        String minutos,
         Clasificacion clasificacion,
         Categoria tipo,
-        String year,
         String sinopsis,
         String director,
         List<String> actores
@@ -27,10 +25,8 @@ public record DatosDetallePelicula(
                 pelicula.getId(),
                 pelicula.getNombre(),
                 pelicula.getUrlTrailer(),
-                pelicula.getMinutos().toString(),
                 pelicula.getClasificacion(),
                 pelicula.getTipo(),
-                pelicula.getYear().toString(),
                 pelicula.getSinopsis(),
                 director.getNombre(),
                 actores.stream().map(Actor::getNombre).collect(Collectors.toList())

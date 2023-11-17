@@ -7,9 +7,9 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.sql.Date;
 import java.sql.Time;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
+import java.time.Year;
 
 
 @Entity(name = "Pelicula")
@@ -39,7 +39,7 @@ public class Pelicula {
     @Enumerated(EnumType.STRING)
     private Categoria tipo;
 
-    private Time year;
+    private Year year;
 
     private String sinopsis;
 

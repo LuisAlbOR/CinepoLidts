@@ -1,11 +1,11 @@
 package edu.unach.cinepolidts.domain.pelicula;
 
-import edu.unach.cinepolidts.domain.director.Director;
 import jakarta.validation.constraints.*;
 
+import java.sql.Date;
 import java.sql.Time;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
+
+import java.time.Year;
 import java.util.List;
 
 public record DatosRegistroPelicula(
@@ -21,7 +21,6 @@ public record DatosRegistroPelicula(
         //@Pattern(regexp = "^[a-zA-Z0-9 .\\-_:/]{4,100}$\n", message = "El nombre debe tener de 4 a 100 caracteres alfanuméricos")
         String nombre,
 
-        @Min(1)
         Time minutos,
 
         @NotNull
@@ -30,8 +29,8 @@ public record DatosRegistroPelicula(
         @NotNull
         Categoria tipo,
 
-        @Min(1950)
-        Time year,
+
+        Year year,
 
         @NotBlank
         String sinopsis,

@@ -5,12 +5,17 @@ import edu.unach.cinepolidts.infra.errors.ValidacionDeIntegridad;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
+import java.time.Year;
+import java.util.List;
 
 @RestController
 @ResponseBody
@@ -20,10 +25,14 @@ public class PeliculaController {
         @Autowired
         private RegistrarPeliculaService registrarPeliculaService;
 
+        @Autowired
+        private PeliculasRepository peliculasRepository;
+
         @PostMapping
         @Transactional
         public ResponseEntity registrarPelicula(@RequestBody @Valid DatosRegistroPelicula datosRegistroPelicula) throws ValidacionDeIntegridad {
-                var response = registrarPeliculaService.registrarPelicula(datosRegistroPelicula);
-                return ResponseEntity.ok(response);
+                 registrarPeliculaService.registrarPelicula(datosRegistroPelicula);
+                return ResponseEntity.ok(datosRegistroPelicula);
         }
+
 }
