@@ -25,20 +25,14 @@ public class SecurityConfigurations {
     // Configura la cadena de filtros de seguridad
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
-        return httpSecurity
-                // Deshabilita la protección CSRF
-                .csrf().disable()
-                // Configura la gestión de sesiones como sin estado
-                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                .and()
-                // Configura la autorización de las solicitudes
-                .authorizeRequests()
-                // Permite el acceso sin autenticación a la ruta "/login" para solicitudes HTTP POST
+        return httpSecurity.csrf().disable().sessionManagement()
+                .sessionCreationPolicy(SessionCreationPolicy.STATELESS) // Le indicamos a Spring el tipo de sesion
+                .and().authorizeRequests()
                 .requestMatchers(HttpMethod.POST, "/login").permitAll()
-                // Todas las demás solicitudes requieren autenticación
-                .anyRequest().authenticated()
+                .requestMatchers("/swagger-ui.html", "/v3/api-docs/**","/swagger-ui/**").permitAll()
+                .anyRequest()
+                .authenticated()
                 .and()
-                // Agrega el filtro de seguridad personalizado antes del filtro predeterminado
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();
     }

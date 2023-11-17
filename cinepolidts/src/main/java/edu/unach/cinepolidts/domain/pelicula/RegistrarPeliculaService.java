@@ -60,4 +60,5 @@ public class RegistrarPeliculaService {
 
         return new DatosDetallePelicula(pelicula,director,actores);
     }
+
 }

@@ -1,6 +1,7 @@
 package edu.unach.cinepolidts.controller;
 
 import edu.unach.cinepolidts.domain.director.*;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,7 @@ import java.net.URI;
 @RestController
 @RequestMapping("/director")
 @CrossOrigin(origins = "*", methods= {RequestMethod.GET,RequestMethod.POST,RequestMethod.DELETE,RequestMethod.PUT})
+@SecurityRequirement(name = "bearer-key")
 public class DirectorController {
 
     @Autowired

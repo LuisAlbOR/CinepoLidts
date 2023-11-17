@@ -2,6 +2,7 @@ package edu.unach.cinepolidts.controller;
 
 import edu.unach.cinepolidts.domain.pelicula.*;
 import edu.unach.cinepolidts.infra.errors.ValidacionDeIntegridad;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,7 @@ import java.util.List;
 @ResponseBody
 @RequestMapping("/pelicula")
 @CrossOrigin(origins = "*", methods= {RequestMethod.GET,RequestMethod.POST,RequestMethod.DELETE,RequestMethod.PUT})
+@SecurityRequirement(name = "bearer-key")
 public class PeliculaController {
         @Autowired
         private RegistrarPeliculaService registrarPeliculaService;
@@ -34,5 +36,6 @@ public class PeliculaController {
                  registrarPeliculaService.registrarPelicula(datosRegistroPelicula);
                 return ResponseEntity.ok(datosRegistroPelicula);
         }
+
 
 }

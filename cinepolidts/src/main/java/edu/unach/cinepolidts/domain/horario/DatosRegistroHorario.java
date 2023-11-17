@@ -1,13 +1,12 @@
 package edu.unach.cinepolidts.domain.horario;
 
-import jakarta.validation.constraints.NotBlank;
-
 import java.sql.Time;
+import java.util.List;
 
 public record DatosRegistroHorario(
-        @NotBlank
-        int idPelicula,
-        @NotBlank
-        Time horario
+        Integer idPelicula,
+        List<Time> horarios
 ) {
+        // Constructor y métodos adicionales si es necesario
 }
+
